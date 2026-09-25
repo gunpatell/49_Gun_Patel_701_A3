@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Result</title>
+</head>
+<body>
+
+    <h2>Submitted Registration Details</h2>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>Username</th>
+            <td><%= userData.username %></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><%= userData.email %></td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            <td><%= userData.gender %></td>
+        </tr>
+        <tr>
+            <th>Hobbies</th>
+            <td><%= userData.hobbies.join(', ') %></td>
+        </tr>
+        <tr>
+            <th>Profile Picture</th>
+            <td>
+                <img src="/uploads/<%= userData.profilePic %>" width="120"><br>
+                <a href="/uploads/<%= userData.profilePic %>" target="_blank">View File</a>
+            </td>
+        </tr>
+        <tr>
+            <th>Other Pictures (<%= userData.otherPics.length %> total)</th>
+            <td>
+                <% if (userData.otherPics && userData.otherPics.length > 0) { %>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                        <!-- Loops over EVERY single item in the array -->
+                        <% userData.otherPics.forEach(function(pictureName) { %>
+                            <div style="text-align: center; border: 1px solid #ccc; padding: 5px;">
+                                <img src="/uploads/<%= pictureName %>" width="100" height="100" style="object-fit: cover;"><br>
+                                <a href="/uploads/<%= pictureName %>" target="_blank">Open Image</a>
+                            </div>
+                        <% }); %>
+                    </div>
+                <% } else { %>
+                    No extra pictures uploaded.
+                <% } %>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <a href="/">Register Another Account</a>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+</head>
+<body>
+
+    <h2>Registration Form</h2>
+
+    <% if (errors.fileError) { %>
+        <p style="color: red; font-weight: bold;"><%= errors.fileError %></p>
+    <% } %>
+
+    <form id="regForm" action="/register" method="POST" enctype="multipart/form-data" novalidate>
+        
+        <p>
+            Username *: <br>
+            <input type="text" id="username" name="username" value="<%= formData.username || '' %>">
+            <span id="err-username" style="color: red;"><%= errors.username || '' %></span>
+        </p>
+
+        <p>
+            Email *: <br>
+            <input type="email" id="email" name="email" value="<%= formData.email || '' %>">
+            <span id="err-email" style="color: red;"><%= errors.email || '' %></span>
+        </p>
+
+        <p>
+            Password *: <br>
+            <input type="password" id="password" name="password" value="<%= formData.password || '' %>">
+            <span id="err-password" style="color: red;"><%= errors.password || '' %></span>
+        </p>
+
+        <p>
+            Confirm Password *: <br>
+            <input type="password" id="confirmPassword" name="confirmPassword" value="<%= formData.confirmPassword || '' %>">
+            <span id="err-confirmPassword" style="color: red;"><%= errors.confirmPassword || '' %></span>
+        </p>
+
+        <p>
+            Gender *: <br>
+            <input type="radio" name="gender" value="Male" <%= formData.gender === 'Male' ? 'checked' : '' %>> Male
+            <input type="radio" name="gender" value="Female" <%= formData.gender === 'Female' ? 'checked' : '' %>> Female
+            <input type="radio" name="gender" value="Other" <%= formData.gender === 'Other' ? 'checked' : '' %>> Other
+            <span id="err-gender" style="color: red;"><%= errors.gender || '' %></span>
+        </p>
+
+        <p>
+            Hobbies *: <br>
+            <% const hobbies = formData.hobbies || []; %>
+            <input type="checkbox" name="hobbies" value="Reading" <%= hobbies.includes('Reading') ? 'checked' : '' %>> Reading
+            <input type="checkbox" name="hobbies" value="Sports" <%= hobbies.includes('Sports') ? 'checked' : '' %>> Sports
+            <input type="checkbox" name="hobbies" value="Music" <%= hobbies.includes('Music') ? 'checked' : '' %>> Music
+            <span id="err-hobbies" style="color: red;"><%= errors.hobbies || '' %></span>
+        </p>
+
+        <p>
+            Profile Picture (Single) *: <br>
+            <input type="file" id="profilePic" name="profilePic" accept="image/*">
+            <span id="err-profilePic" style="color: red;"><%= errors.profilePic || '' %></span>
+        </p>
+
+        <!-- Notice 'multiple' and name="otherPics" -->
+        <p>
+            Other Pictures (Hold Ctrl or Cmd to select multiple files) <br>
+            <input type="file" id="otherPics" name="otherPics" accept="image/*" multiple>
+            <span id="err-otherPics" style="color: red;"><%= errors.otherPics || '' %></span>
+        </p>
+
+        <p>
+            <button type="submit">Register</button>
+        </p>
+    </form>
+
+    <script>
+        const usernameRegex = /^[A-Za-z0-9_]{3,16}$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg', 'image/webp'];
+
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const profilePicInput = document.getElementById('profilePic');
+        const otherPicsInput = document.getElementById('otherPics');
+
+        function validateUsername() {
+            const val = usernameInput.value.trim();
+            const err = document.getElementById('err-username');
+            if (!val) { err.textContent = 'Username is required'; return false; }
+            if (!usernameRegex.test(val)) { err.textContent = '3-16 chars (letters/numbers/underscores)'; return false; }
+            err.textContent = ''; return true;
+        }
+
+        function validateEmail() {
+            const val = emailInput.value.trim();
+            const err = document.getElementById('err-email');
+            if (!val) { err.textContent = 'Email is required'; return false; }
+            if (!emailRegex.test(val)) { err.textContent = 'Invalid email address'; return false; }
+            err.textContent = ''; return true;
+        }
+
+        function validatePassword() {
+            const val = passwordInput.value;
+            const err = document.getElementById('err-password');
+            if (!val) { err.textContent = 'Password is required'; return false; }
+            if (val.length < 6) { err.textContent = 'Min 6 characters required'; return false; }
+            err.textContent = ''; return true;
+        }
+
+        function validateConfirmPassword() {
+            const val = confirmPasswordInput.value;
+            const passVal = passwordInput.value;
+            const err = document.getElementById('err-confirmPassword');
+            if (!val) { err.textContent = 'Confirm password is required'; return false; }
+            if (val !== passVal) { err.textContent = 'Passwords do not match'; return false; }
+            err.textContent = ''; return true;
+        }
+
+        function validateGender() {
+            const checked = document.querySelector('input[name="gender"]:checked');
+            const err = document.getElementById('err-gender');
+            if (!checked) { err.textContent = 'Gender is required'; return false; }
+            err.textContent = ''; return true;
+        }
+
+        function validateHobbies() {
+            const checked = document.querySelectorAll('input[name="hobbies"]:checked');
+            const err = document.getElementById('err-hobbies');
+            if (checked.length === 0) { err.textContent = 'Select at least one hobby'; return false; }
+            err.textContent = ''; return true;
+        }
+
+        function validateProfilePic() {
+            const err = document.getElementById('err-profilePic');
+            if (profilePicInput.files.length === 0 && !err.textContent) {
+                err.textContent = 'Profile picture is required';
+                return false;
+            }
+            if (profilePicInput.files.length > 0) {
+                const file = profilePicInput.files[0];
+                if (!allowedTypes.includes(file.type)) {
+                    err.textContent = 'Only JPG, PNG, GIF, WEBP allowed';
+                    return false;
+                }
+                if (file.size > 5 * 1024 * 1024) {
+                    err.textContent = 'File size must be under 5MB';
+                    return false;
+                }
+            }
+            err.textContent = ''; 
+            return true;
+        }
+
+        function validateOtherPics() {
+            const err = document.getElementById('err-otherPics');
+            const files = otherPicsInput.files;
+
+            if (files.length > 10) {
+                err.textContent = 'Maximum 10 files allowed';
+                return false;
+            }
+
+            for (let i = 0; i < files.length; i++) {
+                if (!allowedTypes.includes(files[i].type)) {
+                    err.textContent = `File "${files[i].name}" is invalid.`;
+                    return false;
+                }
+                if (files[i].size > 5 * 1024 * 1024) {
+                    err.textContent = `File "${files[i].name}" exceeds 5MB limit.`;
+                    return false;
+                }
+            }
+
+            err.textContent = '';
+            return true;
+        }
+
+        usernameInput.addEventListener('input', validateUsername);
+        emailInput.addEventListener('input', validateEmail);
+        passwordInput.addEventListener('input', validatePassword);
+        confirmPasswordInput.addEventListener('input', validateConfirmPassword);
+        profilePicInput.addEventListener('change', validateProfilePic);
+        otherPicsInput.addEventListener('change', validateOtherPics);
+
+        document.querySelectorAll('input[name="gender"]').forEach(r => r.addEventListener('change', validateGender));
+        document.querySelectorAll('input[name="hobbies"]').forEach(c => c.addEventListener('change', validateHobbies));
+
+        document.getElementById('regForm').addEventListener('submit', function(e) {
+            const v1 = validateUsername();
+            const v2 = validateEmail();
+            const v3 = validatePassword();
+            const v4 = validateConfirmPassword();
+            const v5 = validateGender();
+            const v6 = validateHobbies();
+            const v7 = validateProfilePic();
+            const v8 = validateOtherPics();
+
+            if (!v1 || !v2 || !v3 || !v4 || !v5 || !v6 || !v7 || !v8) {
+                e.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+</html>

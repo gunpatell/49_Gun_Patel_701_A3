@@ -1,0 +1,8 @@
+body { margin: 0; font-family: Arial, sans-serif; color: #222; background: #f5f5f5; }
+.page { max-width: 1100px; margin: 35px auto; padding: 0 20px; }
+nav { display: flex; gap: 15px; margin-bottom: 25px; } nav a { color: #175b9b; }
+.form-box, table { background: white; border: 1px solid #bbb; padding: 15px; }
+form { display: flex; flex-wrap: wrap; gap: 8px; } input, button { padding: 8px; font: inherit; } button { cursor: pointer; }
+table { width: 100%; border-collapse: collapse; padding: 0; } th, td { border: 1px solid #ccc; padding: 9px; text-align: left; } th { background: #eee; }
+.success { color: green; }.error { color: #b00020; }
+@media (max-width: 700px) { table { display: block; overflow-x: auto; white-space: nowrap; } }

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Utility</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="label">Problem 6</p>
+      <h1>Weather utility</h1>
+      <p>Search a city to see its current weather.</p>
+    </header>
+
+    <form class="search" action="/" method="get">
+      <label for="city">City name</label>
+      <div>
+        <input id="city" name="city" value="<%= city %>" placeholder="Enter a city" required>
+        <button type="submit">Search</button>
+      </div>
+    </form>
+
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <% if (weather) { %>
+      <section class="result">
+        <h2><%= weather.location.name %>, <%= weather.location.country %></h2>
+        <p class="updated">Current weather · <%= weather.current.time.replace('T', ' ') %></p>
+        <div class="temperature"><%= Math.round(weather.current.temperature_2m) %><%= weather.units.temperature_2m %></div>
+        <p class="condition"><%= weather.description %></p>
+        <dl>
+          <div><dt>Feels like</dt><dd><%= Math.round(weather.current.apparent_temperature) %><%= weather.units.apparent_temperature %></dd></div>
+          <div><dt>Humidity</dt><dd><%= weather.current.relative_humidity_2m %><%= weather.units.relative_humidity_2m %></dd></div>
+          <div><dt>Wind</dt><dd><%= weather.current.wind_speed_10m %> <%= weather.units.wind_speed_10m %></dd></div>
+        </dl>
+      </section>
+    <% } %>
+  </main>
+</body>
+</html>

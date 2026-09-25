@@ -1,0 +1,7 @@
+<!doctype html>
+<html><head><title>Profile</title></head><body>
+<h1>Profile</h1>
+<table border="1" cellpadding="8"><tr><th>Name</th><td><%= user.name %></td></tr><tr><th>Username</th><td><%= user.username %></td></tr><tr><th>Email</th><td><%= user.email %></td></tr></table>
+<br><nav><a href="/dashboard">Dashboard</a> | <a href="/profile">Profile</a></nav><br>
+<form action="/logout" method="POST"><button>Logout</button></form>
+</body></html>

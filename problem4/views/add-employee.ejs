@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Add Employee</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>ERP Admin Panel</h2>
+
+    <div>
+
+        <a href="/employees/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/employees">
+            Employees
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="form-container">
+
+    <h1>Add Employee</h1>
+
+    <% if (error) { %>
+
+        <p class="error">
+            <%= error %>
+        </p>
+
+    <% } %>
+
+    <form action="/employees/add" method="POST">
+
+        <label>Name</label>
+
+        <input
+            type="text"
+            name="name"
+            required
+        >
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            required
+        >
+
+        <label>Department</label>
+
+        <input
+            type="text"
+            name="department"
+            required
+        >
+
+        <label>Designation</label>
+
+        <input
+            type="text"
+            name="designation"
+            required
+        >
+
+        <label>Basic Salary</label>
+
+        <input
+            type="number"
+            name="basicSalary"
+            min="0"
+            required
+        >
+
+        <button type="submit">
+            Add Employee
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+<!doctype html>
+<html><head><title>Login</title></head><body>
+<h1>Login</h1>
+<form action="/login" method="POST">
+  <label>Username <input name="username" required></label><br><br>
+  <label>Password <input type="password" name="password" required></label><br><br>
+  <% if (error) { %><p style="color:red"><%= error %></p><% } %>
+  <button type="submit">Login</button>
+</form>
+<p>Demo: student / student123</p>
+</body></html>

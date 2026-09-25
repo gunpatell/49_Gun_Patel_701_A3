@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Protected Route 1: Dashboard</h2>
+    <p>Welcome back, <b><%= user.username %></b> (<%= user.role %>)!</p>
+
+    <nav>
+        <a href="/dashboard">Dashboard</a> | 
+        <a href="/profile">Profile</a>
+    </nav>
+    <br>
+
+    <form action="/logout" method="POST">
+        <button type="submit">Log Out</button>
+    </form>
+</body>
+</html>

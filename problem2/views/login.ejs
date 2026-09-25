@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h2>User Login</h2>
+
+    <% if (errors.auth) { %>
+        <p style="color: red;"><%= errors.auth %></p>
+    <% } %>
+
+    <form action="/login" method="POST" novalidate>
+        <p>
+            Username:<br>
+            <input type="text" name="username" value="<%= username %>">
+            <span style="color: red;"><%= errors.username || '' %></span>
+        </p>
+        <p>
+            Password:<br>
+            <input type="password" name="password">
+            <span style="color: red;"><%= errors.password || '' %></span>
+        </p>
+        <button type="submit">Log In</button>
+    </form>
+    <p><em>Demo credentials: <b>admin</b> / <b>password123</b></em></p>
+</body>
+</html>

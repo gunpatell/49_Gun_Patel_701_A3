@@ -1,0 +1,142 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #fff;
+    color: #222;
+}
+
+nav {
+    padding: 15px;
+    background: #333;
+    color: #fff;
+}
+
+nav h2 {
+    display: inline;
+    margin-right: 25px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.card {
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+table {
+    width: 100%;
+    margin-top: 15px;
+    border-collapse: collapse;
+    background: #fff;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background: #eee;
+}
+
+.btn,
+button {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #333;
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit {
+    color: #06c;
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.delete {
+    color: #c00;
+    text-decoration: none;
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.form-container input,
+.login-box input {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 12px;
+    border: 1px solid #aaa;
+}
+
+.form-container label,
+.login-box label {
+    display: block;
+}
+
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 350px;
+    max-width: calc(100% - 30px);
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.login-box button {
+    width: 100%;
+}
+
+.error {
+    color: #c00;
+    padding: 10px;
+}
+
+@media (max-width: 700px) {
+    nav h2 {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    nav a {
+        display: inline-block;
+        margin-top: 8px;
+    }
+
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Employees</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>ERP Admin Panel</h2>
+
+    <div>
+
+        <a href="/employees/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/employees/add">
+            Add Employee
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="container">
+
+    <h1>Employee Management</h1>
+
+    <a class="btn" href="/employees/add">
+        + Add Employee
+    </a>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Designation</th>
+                <th>Basic Salary</th>
+                <th>HRA</th>
+                <th>DA</th>
+                <th>Gross Salary</th>
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <% employees.forEach(employee => { %>
+
+            <tr>
+
+                <td>
+                    <%= employee.empid %>
+                </td>
+
+                <td>
+                    <%= employee.name %>
+                </td>
+
+                <td>
+                    <%= employee.email %>
+                </td>
+
+                <td>
+                    <%= employee.department %>
+                </td>
+
+                <td>
+                    <%= employee.designation %>
+                </td>
+
+                <td>
+                    ₹<%= employee.basicSalary %>
+                </td>
+
+                <td>
+                    ₹<%= employee.hra %>
+                </td>
+
+                <td>
+                    ₹<%= employee.da %>
+                </td>
+
+                <td>
+                    ₹<%= employee.grossSalary %>
+                </td>
+
+                <td>
+
+                    <a
+                        class="edit"
+                        href="/employees/edit/<%= employee._id %>"
+                    >
+                        Edit
+                    </a>
+
+                    <a
+                        class="delete"
+                        href="/employees/delete/<%= employee._id %>"
+                        onclick="return confirm('Delete employee?')"
+                    >
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+            <% }) %>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

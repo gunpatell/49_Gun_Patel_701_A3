@@ -1,0 +1,8 @@
+{
+  "name": "problem8",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "start": "node server.js", "dev": "nodemon server.js", "build": "npm --prefix client run build" },
+  "dependencies": { "express": "^5.2.1", "sequelize": "^6.37.5", "sqlite3": "^5.1.7" },
+  "devDependencies": { "nodemon": "^3.1.14" }
+}

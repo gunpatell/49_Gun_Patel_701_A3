@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ERP Dashboard</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+<nav>
+    <h2>ERP Admin Panel</h2>
+
+    <div>
+        <a href="/employees/dashboard">Dashboard</a>
+        <a href="/employees">Employees</a>
+        <a href="/employees/add">Add Employee</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1>Welcome Admin</h1>
+
+    <div class="card">
+
+        <h2>Employee Statistics</h2>
+
+        <p>
+            Total Employees:
+            <strong><%= employees.length %></strong>
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

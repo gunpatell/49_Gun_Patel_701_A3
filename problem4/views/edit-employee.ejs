@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Employee</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>ERP Admin Panel</h2>
+
+    <div>
+
+        <a href="/employees/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/employees">
+            Employees
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+<div class="form-container">
+
+    <h1>Edit Employee</h1>
+
+    <form
+        action="/employees/edit/<%= employee._id %>"
+        method="POST"
+    >
+
+        <label>Name</label>
+
+        <input
+            type="text"
+            name="name"
+            value="<%= employee.name %>"
+            required
+        >
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            value="<%= employee.email %>"
+            required
+        >
+
+        <label>Department</label>
+
+        <input
+            type="text"
+            name="department"
+            value="<%= employee.department %>"
+            required
+        >
+
+        <label>Designation</label>
+
+        <input
+            type="text"
+            name="designation"
+            value="<%= employee.designation %>"
+            required
+        >
+
+        <label>Basic Salary</label>
+
+        <input
+            type="number"
+            name="basicSalary"
+            value="<%= employee.basicSalary %>"
+            required
+        >
+
+        <button type="submit">
+            Update Employee
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

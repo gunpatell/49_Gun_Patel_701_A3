@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h2>Protected Route 2: Profile</h2>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <tr>
+            <th>User ID</th>
+            <td><%= user.id %></td>
+        </tr>
+        <tr>
+            <th>Username</th>
+            <td><%= user.username %></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td><%= user.email %></td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td><%= user.role %></td>
+        </tr>
+    </table>
+
+    <br>
+    <nav>
+        <a href="/dashboard">Dashboard</a> | 
+        <a href="/profile">Profile</a>
+    </nav>
+    <br>
+
+    <form action="/logout" method="POST">
+        <button type="submit">Log Out</button>
+    </form>
+</body>
+</html>
